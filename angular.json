@@ -35,8 +35,15 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
-              }
+                "input": "src/assets",
+                 "output": "assets"
+              },
+              {
+    "glob": "favicon.ico",
+    "input": "public",
+    "output": "/"
+  }
+              
             ],
             "styles": [
               "src/styles.scss"
@@ -99,8 +106,14 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
-              }
+                "input": "src/assets",
+                "output": "/assets"
+              },
+              {
+    "glob": "favicon.ico",
+    "input": "public",
+    "output": "/"
+  }
             ],
             "styles": [
               "src/styles.scss"
@@ -110,5 +123,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "f0b00ee3-b282-4a9e-888e-c5733b086423"
   }
 }

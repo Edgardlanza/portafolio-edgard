@@ -1,0 +1,368 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+
+/* ─── Tokens ─────────────────────────────────────────────── */
+:root {
+  --navy:        #002855;
+  --navy-mid:    #1a3d6b;
+  --accent:      #2a6dd9;
+  --accent-light:#dbeafe;
+  --surface:     #f9fafb;
+  --border:      rgba(0, 40, 85, 0.1);
+  --text:        #0d1b2a;
+  --muted:       #5a6a7e;
+  --radius-sm:   10px;
+  --radius-md:   14px;
+  --radius-lg:   22px;
+  --radius-xl:   28px;
+}
+
+/* ─── Hero section ───────────────────────────────────────── */
+.hero-section {
+  min-height: calc(100vh - 68px);
+  padding: 72px 8%;
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  align-items: center;
+  gap: 48px;
+  background: linear-gradient(160deg, #f0f6ff 0%, #f9fafb 60%, #fff 100%);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: 360px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(42, 109, 217, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+}
+
+/* Eyebrow badge */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 8px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 4px rgba(0, 40, 85, 0.08);
+  margin-bottom: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: 0.04em;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px rgba(42, 109, 217, 0.2);
+    flex-shrink: 0;
+  }
+}
+
+/* Heading */
+.hero-content h1 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(38px, 5.5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  font-weight: 400;
+  margin: 0 0 20px;
+
+  em {
+    color: var(--navy);
+    font-style: italic;
+  }
+}
+
+.hero-content p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--muted);
+  font-weight: 400;
+  max-width: 540px;
+  margin: 0 0 32px;
+}
+
+/* CTA buttons */
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  min-height: 44px;
+  padding: 0 24px;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--navy);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(0, 40, 85, 0.22);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 40, 85, 0.28);
+  }
+}
+
+.btn-secondary {
+  background: #fff;
+  color: var(--navy);
+  border: 1px solid var(--border);
+
+  &:hover {
+    background: var(--accent-light);
+    border-color: rgba(42, 109, 217, 0.25);
+    transform: translateY(-2px);
+  }
+}
+
+/* ─── Hero card ──────────────────────────────────────────── */
+.hero-card {
+  background: #fff;
+  border: 1px solid rgba(0, 40, 85, 0.08);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  box-shadow: 0 20px 60px rgba(0, 40, 85, 0.09), 0 4px 16px rgba(0, 40, 85, 0.06);
+}
+
+.profile-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--accent) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 22px;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.hero-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.hero-card h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 3px;
+}
+
+.hero-card .card-role {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Stats */
+.mini-stats {
+  display: grid;
+  gap: 10px;
+}
+
+.mini-stats div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.mini-stats span {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.mini-stats strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.mini-stats .pill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--accent-light);
+  color: #075985;
+
+  &.green {
+    background: #dcfce7;
+    color: #166534;
+  }
+}
+
+.card-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 20px 0;
+}
+
+.card-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+    flex-shrink: 0;
+  }
+
+  span {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  strong {
+    font-size: 12px;
+    font-weight: 600;
+    color: #166534;
+  }
+}
+
+/* ─── Summary section ────────────────────────────────────── */
+.summary-section {
+  padding: 64px 8%;
+  background: #fff;
+  border-top: 1px solid var(--border);
+}
+
+.summary-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+
+.summary-title {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(26px, 3.5vw, 36px);
+  color: var(--text);
+  font-weight: 400;
+  margin: 0 0 40px;
+  letter-spacing: -0.01em;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.summary-card {
+  padding: 24px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: all 0.22s ease;
+
+  &:hover {
+    background: #fff;
+    box-shadow: 0 12px 32px rgba(0, 40, 85, 0.08);
+    transform: translateY(-3px);
+  }
+}
+
+.summary-card .card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--accent-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+
+  .material-icons {
+    font-size: 20px;
+    color: var(--accent);
+  }
+}
+
+.summary-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 8px;
+}
+
+.summary-card p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ─── Responsive ─────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+    padding: 48px 6%;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-section {
+    padding: 40px 20px;
+  }
+
+  .summary-section {
+    padding: 48px 20px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    justify-content: center;
+  }
+}

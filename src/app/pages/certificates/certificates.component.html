@@ -1,0 +1,51 @@
+<section class="page-section certificates-section">
+  <div class="section-header">
+    <span class="section-badge">Certificados</span>
+
+    <h1>Formación complementaria</h1>
+
+    <p>
+      Certificaciones obtenidas en áreas relacionadas con hardware, redes,
+      ciencia de datos y ciberseguridad, fortaleciendo mi perfil técnico como
+      estudiante de Informática Administrativa y desarrollador frontend.
+    </p>
+  </div>
+
+  <div class="certificates-grid">
+    <article
+      class="certificate-card"
+      *ngFor="let certificado of certificados; trackBy: trackByTitulo"
+      [class.highlight]="certificado.destacado"
+    >
+      <div class="certificate-top">
+        <span class="certificate-icon material-icons">
+          workspace_premium
+        </span>
+
+        <span class="certificate-category">
+          {{ certificado.categoria }}
+        </span>
+      </div>
+
+      <h2>{{ certificado.titulo }}</h2>
+
+      <p class="certificate-institution">
+        {{ certificado.institucion }}
+      </p>
+
+      <div class="certificate-meta">
+        <span class="material-icons">event</span>
+        <span>{{ certificado.fecha }}</span>
+      </div>
+
+      <button
+        type="button"
+        class="certificate-link"
+        (click)="abrirCertificado(certificado.archivo)"
+      >
+        Ver certificado
+        <span class="material-icons">open_in_new</span>
+      </button>
+    </article>
+  </div>
+</section>

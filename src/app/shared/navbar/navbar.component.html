@@ -1,0 +1,42 @@
+<header class="portfolio-navbar">
+
+  <a href="#inicio" class="navbar-logo" aria-label="Ir al inicio">
+    <span class="logo-mark">EL</span>
+    <span class="logo-text">
+      <span class="brand-name">Edgard Lanza</span>
+      <span class="brand-role">Angular Developer</span>
+    </span>
+  </a>
+
+  <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+
+  <label for="menu-toggle" class="menu-button" aria-label="Abrir menú">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+
+  <nav class="navbar-links">
+    <a href="#inicio">Inicio</a>
+    <a href="#sobre-mi">Sobre mí</a>
+    <a href="#experiencia">Experiencia</a>
+    <a href="#proyectos">Proyectos</a>
+    <a href="#habilidades">Habilidades</a>
+    <a href="#certificados">Certificados</a>
+  </nav>
+
+  <div class="navbar-actions">
+    <button
+      type="button"
+      class="theme-toggle"
+      aria-label="Cambiar tema"
+      (click)="themeService.toggle()"
+    >
+      <span class="material-icons icon-sun">light_mode</span>
+      <span class="material-icons icon-moon">dark_mode</span>
+    </button>
+
+    <a href="#contacto" class="navbar-cta">Contacto</a>
+  </div>
+
+</header>
