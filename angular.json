@@ -23,39 +23,46 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
-          "options": {
-            "outputPath": "dist/portafolio-edgard",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "src/assets",
-                 "output": "assets"
-              },
-              {
-    "glob": "favicon.ico",
-    "input": "public",
-    "output": "/"
-  }
-              
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
-          },
+         "options": {
+  "outputPath": {
+    "base": "dist/portafolio-edgard",
+    "browser": ""
+  },
+  "index": "src/index.html",
+  "browser": "src/main.ts",
+  "polyfills": [
+    "zone.js"
+  ],
+  "tsConfig": "tsconfig.app.json",
+  "inlineStyleLanguage": "scss",
+  "assets": [
+    {
+      "glob": "**/*",
+      "input": "src/assets",
+      "output": "assets"
+    },
+    {
+      "glob": "favicon.ico",
+      "input": "public",
+      "output": "."
+    }
+  ],
+  "styles": [
+    "src/styles.scss"
+  ],
+  "scripts": []
+},
           "configurations": {
+            "optimization": {
+  "scripts": true,
+  "styles": {
+    "minify": true,
+    "inlineCritical": true
+  },
+  "fonts": {
+    "inline": false
+  }
+},
             "production": {
               "budgets": [
                 {
