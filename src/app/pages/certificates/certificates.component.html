@@ -16,36 +16,96 @@
       class="certificate-card"
       *ngFor="let certificado of certificados; trackBy: trackByTitulo"
       [class.highlight]="certificado.destacado"
+      (click)="abrirModal(certificado)"
     >
-      <div class="certificate-top">
-        <span class="certificate-icon material-icons">
-          workspace_premium
-        </span>
+      <div class="certificate-preview">
+        <iframe
+          [src]="certificado.previewUrl"
+          [title]="certificado.titulo"
+          loading="lazy"
+        ></iframe>
 
-        <span class="certificate-category">
-          {{ certificado.categoria }}
-        </span>
+        <div class="preview-overlay">
+          <span class="material-icons">visibility</span>
+          <span>Ver certificado</span>
+        </div>
       </div>
 
-      <h2>{{ certificado.titulo }}</h2>
+      <div class="certificate-content">
+        <div class="certificate-top">
+          <span class="certificate-category">
+            {{ certificado.categoria }}
+          </span>
 
-      <p class="certificate-institution">
-        {{ certificado.institucion }}
-      </p>
+          <span class="certificate-date">
+            {{ certificado.fecha }}
+          </span>
+        </div>
 
-      <div class="certificate-meta">
-        <span class="material-icons">event</span>
-        <span>{{ certificado.fecha }}</span>
+        <h2>{{ certificado.titulo }}</h2>
+
+        <p class="certificate-institution">
+          {{ certificado.institucion }}
+        </p>
       </div>
-
-      <button
-        type="button"
-        class="certificate-link"
-        (click)="abrirCertificado(certificado.archivo)"
-      >
-        Ver certificado
-        <span class="material-icons">open_in_new</span>
-      </button>
     </article>
   </div>
 </section>
+
+<div
+  class="certificate-modal-backdrop"
+  *ngIf="certificadoSeleccionado"
+  (click)="cerrarModal()"
+>
+  <div
+    class="certificate-modal"
+    (click)="$event.stopPropagation()"
+  >
+    <button
+      type="button"
+      class="modal-close"
+      aria-label="Cerrar modal"
+      (click)="cerrarModal()"
+    >
+      <span class="material-icons">close</span>
+    </button>
+
+    <div class="modal-header">
+      <span class="modal-category">
+        {{ certificadoSeleccionado.categoria }}
+      </span>
+
+      <h2>{{ certificadoSeleccionado.titulo }}</h2>
+
+      <p>
+        {{ certificadoSeleccionado.institucion }} · {{ certificadoSeleccionado.fecha }}
+      </p>
+    </div>
+
+    <div class="modal-pdf-wrapper">
+      <iframe
+        [src]="certificadoSeleccionado.modalUrl"
+        [title]="certificadoSeleccionado.titulo"
+      ></iframe>
+    </div>
+
+    <div class="modal-actions">
+      <button
+        type="button"
+        class="btn-modal secondary"
+        (click)="cerrarModal()"
+      >
+        Cerrar
+      </button>
+
+      <button
+        type="button"
+        class="btn-modal primary"
+        (click)="abrirPdf(certificadoSeleccionado.archivo)"
+      >
+        Abrir en pestaña
+        <span class="material-icons">open_in_new</span>
+      </button>
+    </div>
+  </div>
+</div>

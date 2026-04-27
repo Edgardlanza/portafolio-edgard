@@ -40,10 +40,10 @@
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
-  padding: 24px;
   box-shadow: var(--shadow-md);
   display: flex;
   flex-direction: column;
+  cursor: pointer;
   transition:
     transform var(--t-mid) var(--ease),
     box-shadow var(--t-mid) var(--ease),
@@ -64,6 +64,7 @@
     transition: opacity var(--t-mid) var(--ease);
     pointer-events: none;
     border-radius: inherit;
+    z-index: 1;
   }
 
   &:hover {
@@ -71,7 +72,17 @@
     border-color: var(--border-em);
     box-shadow: var(--shadow-lg);
 
-    &::before { opacity: 1; }
+    &::before {
+      opacity: 1;
+    }
+
+    .preview-overlay {
+      opacity: 1;
+    }
+
+    .certificate-preview iframe {
+      transform: scale(1.02);
+    }
   }
 
   &.highlight {
@@ -84,6 +95,62 @@
   }
 }
 
+/* ══════════════════════════════════════════════════════════
+   PDF PREVIEW
+   ══════════════════════════════════════════════════════════ */
+.certificate-preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  z-index: 2;
+}
+
+.certificate-preview iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
+  pointer-events: none;
+  transform: scale(1);
+  transform-origin: center;
+  transition: transform var(--t-mid) var(--ease);
+}
+
+.preview-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 40, 85, 0.58);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity var(--t-mid) var(--ease);
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 3;
+
+  .material-icons {
+    font-size: 21px;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   CARD CONTENT
+   ══════════════════════════════════════════════════════════ */
+.certificate-content {
+  position: relative;
+  z-index: 2;
+  padding: 22px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 /* ── Card top row ────────────────────────────────────────── */
 .certificate-top {
   position: relative;
@@ -92,21 +159,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 20px;
-}
-
-.certificate-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: var(--radius-md);
-  background: var(--accent-light);
-  color: var(--navy);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  flex-shrink: 0;
-  transition: background var(--t-mid), color var(--t-mid);
+  margin-bottom: 16px;
 }
 
 .certificate-category {
@@ -119,7 +172,18 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  transition: background var(--t-mid), color var(--t-mid), border-color var(--t-mid);
+  transition:
+    background var(--t-mid),
+    color var(--t-mid),
+    border-color var(--t-mid);
+}
+
+.certificate-date {
+  color: var(--muted-light);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color var(--t-mid);
 }
 
 /* ── Content ─────────────────────────────────────────────── */
@@ -145,56 +209,213 @@
   transition: color var(--t-mid);
 }
 
-/* ── Meta (date) ─────────────────────────────────────────── */
-.certificate-meta {
-  position: relative;
-  z-index: 1;
+/* ══════════════════════════════════════════════════════════
+   MODAL BACKDROP
+   ══════════════════════════════════════════════════════════ */
+.certificate-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(3, 10, 18, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
-  gap: 7px;
-  margin-top: auto;
-  padding-top: 18px;
-  color: var(--navy);
-  font-size: 13px;
-  font-weight: 600;
-  transition: color var(--t-mid);
-
-  .material-icons { font-size: 17px; opacity: 0.8; }
+  justify-content: center;
+  padding: 28px;
+  animation: fadeIn var(--t-fast) ease;
 }
 
-/* ── Link button ─────────────────────────────────────────── */
-.certificate-link {
+/* ══════════════════════════════════════════════════════════
+   MODAL
+   ══════════════════════════════════════════════════════════ */
+.certificate-modal {
   position: relative;
-  z-index: 1;
-  margin-top: 16px;
-  min-height: 40px;
-  padding: 0 16px;
+  width: min(1050px, 100%);
+  height: min(92vh, 900px);
+  background: var(--surface);
+  border: 1px solid var(--border-em);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: modalIn var(--t-mid) var(--ease);
+}
+
+/* Close button */
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 4;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-em);
   border-radius: var(--radius-md);
-  background: var(--navy);
-  color: var(--on-navy);
-  border: none;
-  display: inline-flex;
+  background: var(--surface-2);
+  color: var(--text);
+  display: flex;
   align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-  font-family: inherit;
+  justify-content: center;
   cursor: pointer;
-  box-shadow: var(--shadow-navy);
   transition:
     background var(--t-fast),
     transform var(--t-fast),
-    box-shadow var(--t-fast);
-  align-self: flex-start;
+    color var(--t-fast);
+
+  &:hover {
+    background: var(--accent-light);
+    color: var(--navy);
+    transform: rotate(90deg);
+  }
+
+  .material-icons {
+    font-size: 20px;
+  }
+}
+
+/* Modal header */
+.modal-header {
+  padding: 28px 72px 20px 28px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  transition:
+    background var(--t-mid),
+    border-color var(--t-mid);
+}
+
+.modal-category {
+  display: inline-flex;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--accent-light);
+  color: var(--navy);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+  transition:
+    background var(--t-mid),
+    color var(--t-mid);
+}
+
+.modal-header h2 {
+  margin: 0 0 6px;
+  color: var(--text);
+  font-size: clamp(20px, 3vw, 30px);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  transition: color var(--t-mid);
+}
+
+.modal-header p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  transition: color var(--t-mid);
+}
+
+/* PDF inside modal */
+.modal-pdf-wrapper {
+  flex: 1;
+  background: var(--surface-2);
+  overflow: hidden;
+  transition: background var(--t-mid);
+}
+
+.modal-pdf-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #ffffff;
+}
+
+/* Modal actions */
+.modal-actions {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  transition:
+    background var(--t-mid),
+    border-color var(--t-mid);
+}
+
+.btn-modal {
+  min-height: 40px;
+  padding: 0 18px;
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition:
+    transform var(--t-fast),
+    background var(--t-fast),
+    color var(--t-fast),
+    border-color var(--t-fast);
+
+  .material-icons {
+    font-size: 17px;
+  }
+}
+
+.btn-modal.primary {
+  background: var(--navy);
+  color: var(--on-navy);
+  box-shadow: var(--shadow-navy);
 
   &:hover {
     background: var(--navy-mid);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+  }
+}
+
+.btn-modal.secondary {
+  background: var(--surface-2);
+  color: var(--text);
+  border-color: var(--border-em);
+
+  &:hover {
+    background: var(--accent-light);
+    color: var(--navy);
+    transform: translateY(-2px);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   ANIMATIONS
+   ══════════════════════════════════════════════════════════ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
 
-  .material-icons { font-size: 16px; }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -215,6 +436,45 @@
   }
 
   .certificate-card {
-    &:hover { transform: none; }
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .preview-overlay {
+    opacity: 1;
+    background: linear-gradient(
+      to top,
+      rgba(0, 40, 85, 0.62),
+      rgba(0, 40, 85, 0.12)
+    );
+    align-items: flex-end;
+    padding-bottom: 18px;
+  }
+
+  .certificate-modal-backdrop {
+    padding: 12px;
+    align-items: flex-start;
+  }
+
+  .certificate-modal {
+    height: 94vh;
+    border-radius: 20px;
+  }
+
+  .modal-header {
+    padding: 24px 60px 18px 20px;
+  }
+
+  .modal-pdf-wrapper {
+    min-height: 0;
+  }
+
+  .modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .btn-modal {
+    width: 100%;
   }
 }
