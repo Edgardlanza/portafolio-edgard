@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ThemeService } from '../theme.service';
+import { AccentColor, ThemeService } from '../theme.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,5 +8,16 @@ import { ThemeService } from '../theme.service';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
+  showPalette = false;
+
   constructor(public themeService: ThemeService) {}
+
+  togglePalette(): void {
+    this.showPalette = !this.showPalette;
+  }
+
+  setAccent(accent: AccentColor): void {
+    this.themeService.setAccent(accent);
+    this.showPalette = false;
+  }
 }

@@ -2,9 +2,10 @@
 
   <a href="#inicio" class="navbar-logo" aria-label="Ir al inicio">
     <span class="logo-mark">EL</span>
+
     <span class="logo-text">
       <span class="brand-name">Edgard Lanza</span>
-      <span class="footer-brand-role">Full Stack Developer</span>
+      <span class="brand-role">Full Stack Developer</span>
     </span>
   </a>
 
@@ -21,11 +22,57 @@
     <a href="#sobre-mi">Sobre mí</a>
     <a href="#experiencia">Experiencia</a>
     <a href="#proyectos">Proyectos</a>
-    <a href="#habilidades">Habilidades</a>
+    <a href="#habilidades">Stack</a>
     <a href="#certificados">Certificados</a>
   </nav>
 
   <div class="navbar-actions">
+
+    <div class="palette-wrapper">
+      <button
+        type="button"
+        class="palette-toggle"
+        aria-label="Cambiar color principal"
+        (click)="togglePalette()"
+      >
+        <span class="material-icons">palette</span>
+      </button>
+
+      <div class="color-palette" *ngIf="showPalette">
+        <button
+          type="button"
+          class="color-dot blue"
+          title="Azul institucional"
+          [class.active]="themeService.currentAccent === 'blue'"
+          (click)="setAccent('blue')"
+        ></button>
+
+        <button
+          type="button"
+          class="color-dot purple"
+          title="Morado IA"
+          [class.active]="themeService.currentAccent === 'purple'"
+          (click)="setAccent('purple')"
+        ></button>
+
+        <button
+          type="button"
+          class="color-dot green"
+          title="Verde tecnológico"
+          [class.active]="themeService.currentAccent === 'green'"
+          (click)="setAccent('green')"
+        ></button>
+
+        <button
+          type="button"
+          class="color-dot orange"
+          title="Naranja creativo"
+          [class.active]="themeService.currentAccent === 'orange'"
+          (click)="setAccent('orange')"
+        ></button>
+      </div>
+    </div>
+
     <button
       type="button"
       class="theme-toggle"
