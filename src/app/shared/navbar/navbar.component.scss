@@ -152,9 +152,6 @@
   .icon-moon { display: block; }
 }
 
-:root[data-theme="dark"] .theme-toggle,
-/* ✅ Sin nesting problemático */
-
 /* Ícono según tema */
 .theme-toggle .icon-sun  { display: none; }
 .theme-toggle .icon-moon { display: block; }
@@ -165,7 +162,7 @@
 .navbar-cta {
   padding: 9px 18px;
   border-radius: var(--radius-md);
-  background: var(--navy);
+  background: var(--accent-hover);
   color: var(--on-navy);
   font-size: 13px;
   font-weight: 600;

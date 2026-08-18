@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 interface Certificado {
@@ -8,7 +8,6 @@ interface Certificado {
   fecha: string;
   archivo: string;
   destacado?: boolean;
-  previewUrl?: SafeResourceUrl;
   modalUrl?: SafeResourceUrl;
 }
 
@@ -157,9 +156,6 @@ export class CertificatesComponent {
 
     this.certificados = data.map(certificado => ({
       ...certificado,
-      previewUrl: this.sanitizer.bypassSecurityTrustResourceUrl(
-        `${certificado.archivo}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`
-      ),
       modalUrl: this.sanitizer.bypassSecurityTrustResourceUrl(
         `${certificado.archivo}#toolbar=1&navpanes=0&scrollbar=1&view=FitH`
       )
@@ -172,6 +168,11 @@ export class CertificatesComponent {
 
   cerrarModal(): void {
     this.certificadoSeleccionado = null;
+  }
+
+  @HostListener('document:keydown.escape')
+  cerrarConEscape(): void {
+    this.cerrarModal();
   }
 
   abrirPdf(ruta: string): void {

@@ -1,0 +1,55 @@
+.about-section {
+  background: var(--surface);
+}
+
+.about-story {
+  min-height: 100%;
+}
+
+.card-number {
+  display: inline-block;
+  margin-bottom: 38px;
+  color: var(--accent);
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 28px;
+  font-style: italic;
+}
+
+.about-card p + p {
+  margin-top: 16px;
+}
+
+.education-card {
+  background: var(--surface-2);
+}
+
+.education-item {
+  display: grid;
+  gap: 6px;
+  padding: 20px 0;
+  border-top: 1px solid var(--border-em);
+
+  &:first-of-type {
+    margin-top: 18px;
+  }
+
+  span {
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+
+  strong {
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  small {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}

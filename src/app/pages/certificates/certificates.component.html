@@ -5,30 +5,22 @@
     <h1>Formación complementaria</h1>
 
     <p>
-      Certificaciones obtenidas en áreas relacionadas con hardware, redes,
-      ciencia de datos y ciberseguridad, fortaleciendo mi perfil técnico como
-      estudiante de Informática Administrativa y desarrollador frontend.
+      Formación continua en desarrollo, bases de datos, inteligencia artificial,
+      ciencia de datos y ciberseguridad.
     </p>
   </div>
 
   <div class="certificates-grid">
-    <article
+    <button
+      type="button"
       class="certificate-card"
       *ngFor="let certificado of certificados; trackBy: trackByTitulo"
       [class.highlight]="certificado.destacado"
       (click)="abrirModal(certificado)"
+      [attr.aria-label]="'Ver certificado: ' + certificado.titulo"
     >
-      <div class="certificate-preview">
-        <iframe
-          [src]="certificado.previewUrl"
-          [title]="certificado.titulo"
-          loading="lazy"
-        ></iframe>
-
-        <div class="preview-overlay">
-          <span class="material-icons">visibility</span>
-          <span>Ver certificado</span>
-        </div>
+      <div class="certificate-icon" aria-hidden="true">
+        <span class="material-icons">workspace_premium</span>
       </div>
 
       <div class="certificate-content">
@@ -47,8 +39,13 @@
         <p class="certificate-institution">
           {{ certificado.institucion }}
         </p>
+
+        <span class="certificate-link">
+          Ver credencial
+          <span class="material-icons" aria-hidden="true">arrow_outward</span>
+        </span>
       </div>
-    </article>
+    </button>
   </div>
 </section>
 

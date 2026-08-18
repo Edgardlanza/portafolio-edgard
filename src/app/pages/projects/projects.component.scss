@@ -1,0 +1,92 @@
+.projects-section {
+  background: var(--surface);
+}
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card.featured {
+  color: #fff;
+  border-color: transparent;
+  background:
+    radial-gradient(circle at 90% 0, rgba(255, 255, 255, 0.16), transparent 30%),
+    linear-gradient(145deg, #0a2342 0%, #0b4b83 100%);
+  box-shadow: 0 24px 60px rgba(0, 40, 85, 0.22);
+
+  h2,
+  p,
+  .project-outcome {
+    color: #fff;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.74);
+  }
+
+  .project-tag {
+    color: #0a2342;
+    background: #fff;
+  }
+
+  .project-list span {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+.project-index {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  color: var(--muted-light);
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 34px;
+  font-style: italic;
+  line-height: 1;
+  opacity: 0.7;
+}
+
+.featured .project-index {
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.project-outcome {
+  margin-top: 28px;
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 13px;
+  font-weight: 600;
+
+  .material-icons {
+    color: #86efac;
+    font-size: 19px;
+  }
+}
+
+.project-principles ol {
+  margin-top: 18px;
+  list-style: none;
+
+  li {
+    padding: 13px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  span {
+    color: var(--accent);
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 20px;
+  }
+}
