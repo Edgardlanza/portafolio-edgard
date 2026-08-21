@@ -272,6 +272,56 @@ body {
   background: #2563eb !important;
 }
 
+.skills-section {
+  background:
+    linear-gradient(90deg, rgba(37, 99, 235, 0.045) 1px, transparent 1px),
+    linear-gradient(rgba(37, 99, 235, 0.045) 1px, transparent 1px),
+    var(--bg) !important;
+  background-size: 44px 44px !important;
+}
+
+.tech-highlight span {
+  color: #1e3a8a !important;
+  border-color: #bfdbfe !important;
+  border-radius: 8px !important;
+  background: #eff6ff !important;
+  box-shadow: none !important;
+}
+
+.tech-highlight span:hover {
+  color: #ffffff !important;
+  border-color: #2563eb !important;
+  background: #2563eb !important;
+  box-shadow: none !important;
+  transform: translateY(-1px) !important;
+}
+
+.skill-card:nth-child(2) .card-icon,
+.skill-card:nth-child(3) .card-icon,
+.skill-card:nth-child(5) .card-icon,
+.skill-card:nth-child(6) .card-icon {
+  color: #2563eb !important;
+  background: #dbeafe !important;
+  box-shadow: none !important;
+}
+
+.skill-card:nth-child(2) .card-icon .material-icons,
+.skill-card:nth-child(3) .card-icon .material-icons,
+.skill-card:nth-child(5) .card-icon .material-icons,
+.skill-card:nth-child(6) .card-icon .material-icons {
+  color: #2563eb !important;
+}
+
+.skill-card .card-icon,
+.skill-card .card-icon .material-icons {
+  color: #2563eb !important;
+}
+
+.skill-card .card-icon {
+  background: #dbeafe !important;
+  box-shadow: none !important;
+}
+
 .projects-section {
   background: var(--surface) !important;
 }
@@ -553,6 +603,50 @@ body {
 
 :root[data-theme="dark"] .hero-section .marquee-track {
   color: #bfdbfe !important;
+}
+
+:root[data-theme="dark"] .skills-section {
+  background:
+    linear-gradient(90deg, rgba(96, 165, 250, 0.04) 1px, transparent 1px),
+    linear-gradient(rgba(96, 165, 250, 0.04) 1px, transparent 1px),
+    var(--bg) !important;
+  background-size: 44px 44px !important;
+}
+
+:root[data-theme="dark"] .tech-highlight span {
+  color: #bfdbfe !important;
+  border-color: #1e3a8a !important;
+  background: rgba(37, 99, 235, 0.12) !important;
+}
+
+:root[data-theme="dark"] .tech-highlight span:hover {
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+  background: #2563eb !important;
+}
+
+:root[data-theme="dark"] .skill-card:nth-child(2) .card-icon,
+:root[data-theme="dark"] .skill-card:nth-child(3) .card-icon,
+:root[data-theme="dark"] .skill-card:nth-child(5) .card-icon,
+:root[data-theme="dark"] .skill-card:nth-child(6) .card-icon {
+  color: #93c5fd !important;
+  background: rgba(37, 99, 235, 0.16) !important;
+}
+
+:root[data-theme="dark"] .skill-card:nth-child(2) .card-icon .material-icons,
+:root[data-theme="dark"] .skill-card:nth-child(3) .card-icon .material-icons,
+:root[data-theme="dark"] .skill-card:nth-child(5) .card-icon .material-icons,
+:root[data-theme="dark"] .skill-card:nth-child(6) .card-icon .material-icons {
+  color: #93c5fd !important;
+}
+
+:root[data-theme="dark"] .skill-card .card-icon,
+:root[data-theme="dark"] .skill-card .card-icon .material-icons {
+  color: #93c5fd !important;
+}
+
+:root[data-theme="dark"] .skill-card .card-icon {
+  background: rgba(37, 99, 235, 0.16) !important;
 }
 
 :root[data-theme="dark"] .about-card,
